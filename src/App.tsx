@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MvTable from './MvTable'
+import Mvtable from './MvTable';
 
 
 
@@ -43,39 +45,40 @@ class App extends React.Component<any, any> {
     var movieRows:any = []
     movies.forEach((movie)=> {
       //console.log(movie.title);
-    
 
-      const movieRow = <table key={movie.id}>
-        <thead>
-          <tr>
-            <td> ID </td>
-            <td> Title </td>
-            <td> Year </td>
-            <td> Runtime </td>
-            <td> Genre </td>
-            <td> Director </td>
-            <td> Language </td>
-            <td> Released </td>
-            <td> Poster </td>
+    const movieRow = <Mvtable mv={movie} /> // pass movie : mv to the component:Mvtable
 
-          </tr>
+      // const movieRow = <table key={movie.id}>
+      //   <thead>
+      //     <tr>
+      //       <td> ID </td>
+      //       <td> Title </td>
+      //       <td> Year </td>
+      //       <td> Runtime </td>
+      //       <td> Genre </td>
+      //       <td> Director </td>
+      //       <td> Language </td>
+      //       <td> Released </td>
+      //       <td> Poster </td>
 
-        </thead>
-        <tbody>
-          <tr>
-            <td>{movie.id}</td>
-            <td>{movie.title}</td>
-            <td>{movie.year} </td>
-            <td>{movie.runtime}</td>
-            <td>{movie.Genre}</td>
-            <td>{movie.director}</td>
-            <td>{movie.Language}</td>
-            <td>{movie.released}</td>
-            <td><img alt="poster" width="50" src={movie.poster_src}/></td>
-          </tr>
-        </tbody>
+      //     </tr>
 
-        </table>
+      //   </thead>
+      //   <tbody>
+      //     <tr>
+      //       <td>{movie.id}</td>
+      //       <td>{movie.title}</td>
+      //       <td>{movie.year} </td>
+      //       <td>{movie.runtime}</td>
+      //       <td>{movie.Genre}</td>
+      //       <td>{movie.director}</td>
+      //       <td>{movie.Language}</td>
+      //       <td>{movie.released}</td>
+      //       <td><img alt="poster" width="50" src={movie.poster_src}/></td>
+      //     </tr>
+      //   </tbody>
+
+      //   </table>
       // movieRows.push(<p key = {movie.id}> movie title: {movie.title}</p>)
       movieRows.push(movieRow)
     })
