@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MvTable from './MvTable'
+
 import Mvtable from './MvTable';
+import $ from 'jquery'
+import * as PropTypes from 'prop-types'
+import { resolveSoa } from 'dns';
 
 
 
@@ -17,6 +20,8 @@ class App extends React.Component<any, any> {
     super(props);
     this.state = {};
 
+    /*
+   
     
     const movies = [
       {id: "0", title: "batman", year: 1888, released: "movie", runtime:"136 min", Genre:"Action, Adventure, Comedy, Sci-Fi", 
@@ -85,12 +90,84 @@ class App extends React.Component<any, any> {
 
     this.state = {rows: movieRows}
 
-   
+   *comment out dummy data/
+    
+/*********************************************************************************************************************** */
+    this.search();
     
 
-
-
   }// constructor
+
+  
+  // componentDidMount(){
+  //   fetch('http://www.omdbapi.com/?t=woman&apikey=e83ce568')
+  //   .then(res => {
+  //     return res.json();
+  //   }).then(data => {
+     
+
+  //     let movie = data.res.map((m:any) => {
+
+  //     })
+
+  //   })
+  // }
+
+
+  search(){
+    console.log("search")
+    const urlString = "http://www.omdbapi.com/?i=tt0944947&Season=1&apikey=e83ce568"
+    
+
+    $.ajax({
+
+      url: urlString,
+      success:(searchRes) => {
+         console.log(" fetched data successfully");
+         console.log(searchRes);
+         console.log(searchRes.title)
+
+        const res = searchRes.res
+        //console.log(res[10]);
+       
+        var movies:any = []
+        
+
+        if(!res){
+          return
+        }else 
+
+        res.forEach((m:any) => {
+
+          console.log(m.title)
+          
+          const movie = <Mvtable mv = {m} />
+
+          movies.push(movie)
+
+          
+        })
+        
+    
+        this.setState({rows: movies})
+       
+
+         
+        
+      },
+      error:(xhr, status, err) =>{
+        console.log("Failed to fetch data")
+      }
+
+    })
+  }
+
+
+
+
+
+
+
 
 
   render() {
